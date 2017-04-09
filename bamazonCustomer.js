@@ -17,7 +17,7 @@ function start() {
     connection.query("SELECT * FROM products", function(err, res) {
         for (var i=0; i<res.length; i++) {
             if(res[i].stock_quantity>0) {
-                console.log('ID: ' + res[i].item_id + ' - ' + res[i].product_name + ' $' + res[i].price)
+                console.log('ID: ' + res[i].item_id + ' | ' + res[i].product_name + ' | $' + res[i].price)
             }
         }
         buyProduct();
@@ -36,7 +36,6 @@ function buyProduct() {
         type: 'integer',
         required: true
     }], function(err, res) {
-        if (err) throw err;
         console.log(res);
         var purchaseID = res.productID;
         var purchaseQty = res.quantity;
