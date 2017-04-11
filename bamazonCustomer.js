@@ -46,12 +46,19 @@ function buyProduct() {
             if(res[0].stock_quantity >= purchaseQty) {
                 var stockQty = res[0].stock_quantity;
                 var orderPrice = purchaseQty * res[0].price;
+                var currentSales = res[0].products_sales;
                 connection.query("UPDATE products SET ? WHERE ?", [{
                     stock_quantity: stockQty - purchaseQty
                 }, {
                     item_id: purchaseID
                 }])
                 console.log("Purchase successful, your total is $" + orderPrice);
+                var newSales = currentSales + orderPrice;
+                connection.query("UPDATE products SET ? WHERE ?", [{
+                    products_sales: newSales
+                }, {
+                    item_id: purchaseID
+                }])
             } else {
                 console.log("Insufficient quantity");
             }
