@@ -43,22 +43,7 @@ function viewSalesByDept() {
 }
 
 function createDept() {
-    prompt.get([{
-        name: "departmentName",
-        description: "What department to add",
-        type: "string",
-        required: true
-    }, {
-        name: "overhead",
-        description: "What is the overhead cost",
-        type: "decimal",
-        required: true
-    }], function(err, res) {
-        var query = "INSERT INTO departments (department_name, overhead_cost, total_sales) VALUES ('" + res.departmentName + "', '" + res.overhead+ "', " + 0 + ")";
-        connection.query(query, function(err, res) {
-            console.log("New product added")
-        })
-    })
+    
 }
 
 start();
